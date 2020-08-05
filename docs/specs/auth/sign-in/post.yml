@@ -1,0 +1,32 @@
+'/auth/sign-in':
+  post:
+    tags:
+      - auth
+    summary: '로그인 API'
+    description: '서비스에 로그인하는 API 입니다.'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - socialLoginType
+              - socialLoginId
+              - socialLoginToken
+            properties:
+              socialLoginType:
+                type: 'string'
+                example: 'kakao || apple'
+                description: '소셜로그인 종류'
+              socialLoginId:
+                type: 'string'
+                description: '소셜로그인 ID'
+              socialLoginToken:
+                type: 'string'
+                description: '소셜로그인 성공시 발급받은 access/identity 토큰'
+    responses:
+      200:
+        $ref: '#/components/responses/20000'
+      500:
+        $ref: '#/components/responses/50000'

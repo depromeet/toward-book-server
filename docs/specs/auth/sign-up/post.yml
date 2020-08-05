@@ -1,0 +1,37 @@
+'/auth/sign-up':
+  post:
+    tags:
+      - auth
+    summary: '회원가입 API'
+    description: '서비스에 회원가입하는 API 입니다.'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - nickname
+              - profileImageType
+              - socialLoginType
+              - socialLoginId
+            properties:
+              nickname:
+                type: 'string'
+                description: '사용자 닉네임'
+              profileImageType:
+                type: 'integer'
+                example: '1 ~ 6'
+                description: '사용자 프로필 사진 번호'
+              socialLoginType:
+                type: 'string'
+                example: 'kakao || apple'
+                description: '소셜로그인 종류'
+              socialLoginId:
+                type: 'string'
+                description: '소셜로그인 ID'
+    responses:
+      200:
+        $ref: '#/components/responses/20000'
+      500:
+        $ref: '#/components/responses/50000'

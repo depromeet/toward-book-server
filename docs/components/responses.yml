@@ -1,0 +1,34 @@
+20000:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          code:
+            type: string
+          timestamp:
+            type: string
+          message:
+            type: string
+        example:
+          code: '20000'
+          timestamp: '2000-01-01T00:00:00.000Z'
+          message: null
+          data: null
+50000:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          code:
+            type: string
+          timestamp:
+            type: string
+          message:
+            type: string
+        example:
+          code: '50000'
+          timestamp: '2000-01-01T00:00:00.000Z'
+          message: null
+          data: null
