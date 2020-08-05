@@ -18,7 +18,7 @@ export const errorRes = (req, res, code = '500') => {
   res.json({
     code: code === '500' ? '50000' : code,
     timestamp: moment.utc().format('YYYY-MM-DD HH:mm:ss.Z'),
-    message: code in codes ? null : codes[code],
+    message: code in codes ? codes[code] : null,
     data: null,
   });
 };

@@ -20,10 +20,11 @@ Sequelize.sequelize
     app.use(express.urlencoded({ extended: false }));
 
     app.use(Cors);
-    app.use(ErrorHandler);
     app.use(Morgan);
 
     app.use('/', routers);
+
+    app.use(ErrorHandler);
 
     const server = app.listen(CONFIG.server.port, () => {
       const { address, port } = server.address();
