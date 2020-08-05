@@ -1,0 +1,16 @@
+## Idea Project
+.idea
+
+## Node Modules
+node_modules
+
+## Lock Files
+package-lock.json
+yarn.lock
+
+## Log Files
+logs/info/*
+logs/error/*
+
+## Environment Variables
+.env
