@@ -17,7 +17,7 @@ export default (sequelize, DataTypes) => {
     }
   );
 
-  Tag.associate = function (models) {
+  Tag.associate = (models) => {
     Tag.hasMany(models.BookTagBridge, {
       foreignKey: 'tagId',
       as: 'books',

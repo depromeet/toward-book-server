@@ -22,7 +22,7 @@ export default (sequelize, DataTypes) => {
     }
   );
 
-  BookTagBridge.associate = function (models) {
+  BookTagBridge.associate = (models) => {
     BookTagBridge.belongsTo(models.Book, {
       foreignKey: 'bookId',
       targetKey: 'id',
