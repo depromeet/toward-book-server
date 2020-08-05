@@ -7,7 +7,7 @@ export default (token) => {
   return axios({
     url: CONFIG.oauth.kakao.url,
     method: 'get',
-    headers: { Authorization: token },
+    headers: { Authorization: `Bearer ${token}` },
   })
     .then((res) => {
       if (res.status === 200) {
