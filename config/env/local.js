@@ -11,13 +11,6 @@ const local = {
       debug: true,
     },
     allowedOrigins: [],
-    swagger: {
-      ui: {
-        swaggerOptions: {
-          url: 'http://localhost:5000/swagger',
-        },
-      },
-    },
     test: {
       agent: 'http://localhost:5000',
     },

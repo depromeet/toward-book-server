@@ -8,15 +8,6 @@ const development = {
       debug: false,
     },
     allowedOrigins: [],
-    swagger: {
-      ui: {
-        swaggerVersion: '3.24.2',
-        routePrefix: '/docs',
-        swaggerOptions: {
-          url: '',
-        },
-      },
-    },
     test: {
       agent: '',
     },
