@@ -19,6 +19,7 @@ export default {
   socialLoginType: {
     in: ['body'],
     notEmpty: true,
+    isString: true,
     isIn: {
       options: [enums.socialLoginType],
     },
@@ -26,6 +27,7 @@ export default {
   socialLoginId: {
     in: ['body'],
     notEmpty: true,
+    isString: true,
     isLength: {
       options: { min: 1, max: 30 },
     },
