@@ -1,6 +1,7 @@
 import express from 'express';
 
 import Cors from './middleware/cors';
+import ErrorHandler from './middleware/error-handler';
 import Morgan from './middleware/morgan';
 
 import routers from './routes';
@@ -19,6 +20,7 @@ Sequelize.sequelize
     app.use(express.urlencoded({ extended: false }));
 
     app.use(Cors);
+    app.use(ErrorHandler);
     app.use(Morgan);
 
     app.use('/', routers);
