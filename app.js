@@ -1,4 +1,5 @@
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
 
 import Cors from './middleware/cors';
 import ErrorHandler from './middleware/error-handler';
@@ -7,6 +8,7 @@ import Morgan from './middleware/morgan';
 import routers from './routes';
 import CONFIG from './config';
 import Sequelize from './models';
+import swaggerSpecs from './docs';
 import { logger } from './config/winston';
 
 Sequelize.sequelize
@@ -23,6 +25,10 @@ Sequelize.sequelize
     app.use(Morgan);
 
     app.use('/', routers);
+
+    if (process.env.NODE_ENV !== 'production') {
+      app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+    }
 
     app.use(ErrorHandler);
 
