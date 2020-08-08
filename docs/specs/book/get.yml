@@ -1,0 +1,115 @@
+'/book':
+  get:
+    tags:
+      - book
+    summary: '책 API'
+    description: '사용자가 남긴 책 전체 목록을 불러오는 API 입니다.'
+    responses:
+      200:
+        content:
+          application/json:
+            schemas:
+              type: object
+              properties:
+                user:
+                  type: object
+                  prperties:
+                    nickname: 
+                      type: string 
+                      description: '사용자 닉네임'
+                    profileImageType:
+                      type: integer
+                      description: '사용자 프로필 이미지 타입'
+                count:
+                  type: integer
+                    description: '사용자가 남긴 책의 기록 개수' 
+                bookList:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: '책 아이디'
+                      title:
+                        type: string
+                        description: '책 제목'
+                      colorType:
+                        type: string
+                        example: 'NAVY, GRAY...'
+                        description: '북커버 컬러칩'
+                      phrase:
+                        type: string
+                        description: '북커버에 들어갈 문구'
+                      author:
+                        type: string
+                        description: '저자'
+      500:
+        $ref: '#/components/responses/50000'
+
+'/book/{id}':
+  get:
+    tags:
+      - book
+    summary: '책 API'
+    description: '책에 대한 자세한 기록을 불러오는 API 입니다.'
+    parameters:
+    - name: id
+      in: path
+      type: 'integer'
+      required: true
+    responses:
+      200:
+        content:
+          application/json:
+            schemas:
+              type: object
+              properties:
+                user:
+                  type: object
+                  prperties:
+                    nickname: 
+                      type: string 
+                      description: '사용자 닉네임'
+                    profileImageType:
+                      type: integer
+                      description: '사용자 프로필 이미지 타입'
+                book:
+                  type: object
+                  prperties:
+                    title:
+                      type: string
+                      description: '책 제목'
+                    colorType:
+                      type: string
+                      example: 'NAVY, GRAY...'
+                      description: '북커버 컬러칩'
+                    latitude:
+                      type: number
+                      format: float
+                      description: '위도'
+                    longitude:
+                      type: number
+                      format: float
+                      description: '경도'
+                    phrase:
+                      type: string
+                      description: '북커버에 들어갈 문구'
+                    reason:
+                      type: string
+                      description: '기록을 남기는 이유'
+                    time:
+                      type: string
+                      example: '촉촉한 새벽, 새로운 아침...'
+                      description: '책을 추천하는 시간대'
+                    author:
+                      type: string
+                      description: '저자'
+                    description:
+                      type: 'string'
+                      description: '설명'
+                    publisher:
+                      type: 'string'
+                      description: '출판사'
+      500:
+        $ref: '#/components/responses/50000'
