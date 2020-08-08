@@ -41,6 +41,9 @@ export default (sequelize, DataTypes) => {
       description: {
         type: DataTypes.STRING(300),
       },
+      thumbnail: {
+        type: DataTypes.STRING(300),
+      },
       pubDate: {
         type: DataTypes.DATE,
       },
