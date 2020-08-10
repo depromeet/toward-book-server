@@ -10,25 +10,14 @@ exports.getBooks = async (req, res) => {
     // if (!errors.isEmpty()) {
     //   return errorRes(req, res, '40000');
     // }
-    const user = await models.User.findOne({
-      where: {
-        id: userId,
-      },
-      attributes: ['nickname', 'profileImageType'],
-    });
-    const count = await models.Book.count({
-      where: {
-        userId,
-      },
-    });
-    const bookList = await models.Book.findAll({
+    const { count, rows } = await models.Book.findAndCountAll({
       where: {
         userId,
       },
       attributes: ['id', 'title', 'colorType', 'phrase', 'author'],
       order: [['updatedAt', 'DESC']],
     });
-    return successRes(req, res, { user, count, bookList });
+    return successRes(req, res, { count, rows });
   } catch (e) {
     logger.error(e);
     return errorRes(req, res);

@@ -52,20 +52,19 @@ exports.getBook = async (req, res) => {
       where: {
         id: bookId,
       },
-      include: [
-        {
-          model: models.BookTagBridge,
-          as: 'tags',
-          include: [
-            {
-              model: models.Tag,
-              as: 'tag',
-              attributes: ['name'],
-            },
-          ],
-          attributes: ['tagId'],
-        },
-      ],
+      // include: [
+      //   {
+      //     model: models.BookTagBridge,
+      //     as: 'tags',
+      //     include: [
+      //       {
+      //         model: models.Tag,
+      //         as: 'tag',
+      //         attributes: ['name'],
+      //       },
+      //     ],
+      //   },
+      // ],
       attributes: [
         'title',
         'colorType',
@@ -79,7 +78,19 @@ exports.getBook = async (req, res) => {
         'publisher',
       ],
     });
-    return successRes(req, res, { user, book });
+    const tagsNotFiltered = await models.Tag.findAll({
+      include: [
+        {
+          model: models.BookTagBridge,
+          as: 'books',
+          where: { bookId },
+          attributes: [],
+        },
+      ],
+      attributes: ['name'],
+    });
+    const tags = tagsNotFiltered.map(({ name }) => name);
+    return successRes(req, res, { user, book, tags });
   } catch (e) {
     logger.error(e);
     return errorRes(req, res);
