@@ -1,5 +1,6 @@
 import { validationResult } from 'express-validator';
 
+import enums from '../../config/enums';
 import models from '../../models';
 import { logger } from '../../config/winston';
 import { successRes, errorRes } from '../../helpers/response';
@@ -14,10 +15,14 @@ exports.postBook = async (req, res) => {
     // API 사용 제목으로 search 후 저자, 출판사, 출판일, 설명과 같이 저장!
     const { id } = await models.Book.create(req.body);
     const { tags } = req.body;
-    tags.forEach(async (tag) => {
+    const tagIds = [];
+    tags.forEach((tag) => {
+      tagIds.push(enums.tag.indexOf(tag) + 1);
+    });
+    tagIds.forEach(async (tagId) => {
       await models.BookTagBridge.create({
         bookId: id,
-        tagId: tag,
+        tagId,
       });
     });
     return successRes(req, res);
@@ -47,6 +52,20 @@ exports.getBook = async (req, res) => {
       where: {
         id: bookId,
       },
+      include: [
+        {
+          model: models.BookTagBridge,
+          as: 'tags',
+          include: [
+            {
+              model: models.Tag,
+              as: 'tag',
+              attributes: ['name'],
+            },
+          ],
+          attributes: ['tagId'],
+        },
+      ],
       attributes: [
         'title',
         'colorType',
