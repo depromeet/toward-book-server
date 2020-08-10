@@ -96,3 +96,19 @@ exports.getBook = async (req, res) => {
     return errorRes(req, res);
   }
 };
+
+exports.deleteBook = async (req, res) => {
+  // const userId = req.user.id;
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return errorRes(req, res, '40000');
+    }
+    const bookId = req.params.id;
+    await models.Book.destroy({ where: { id: bookId } });
+    return successRes(req, res);
+  } catch (e) {
+    logger.error(e);
+    return errorRes(req, res);
+  }
+};
