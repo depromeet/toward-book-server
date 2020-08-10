@@ -67,6 +67,7 @@ export default (sequelize, DataTypes) => {
     Book.hasMany(models.BookTagBridge, {
       foreignKey: 'bookId',
       as: 'tags',
+      onDelete: 'CASCADE',
     });
   };
 
