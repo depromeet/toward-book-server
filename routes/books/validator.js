@@ -1,3 +1,5 @@
+import enums from '../../config/enums';
+
 exports.postValidator = {
   title: {
     in: ['body'],
@@ -72,6 +74,15 @@ exports.postValidator = {
     isString: true,
     isLength: {
       options: { min: 1, max: 20 },
+    },
+  },
+  tags: {
+    in: ['body'],
+    isArray: {
+      options: { min: 0, max: 3 },
+    },
+    isIn: {
+      options: [enums.tag],
     },
   },
 };
