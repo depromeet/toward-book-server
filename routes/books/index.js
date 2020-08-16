@@ -8,8 +8,11 @@ import bookValidator from './validator';
 
 const router = express.Router();
 
-router.get('/search/:title', wrap(bookController.searchBook));
-
+router.get(
+  '/search/:title',
+  checkSchema(bookValidator.searchValidator),
+  wrap(bookController.searchBook)
+);
 router.post('/', checkSchema(bookValidator.postValidator), wrap(bookController.postBook));
 router.get('/:id', wrap(bookController.getBook));
 router.delete('/:id', checkSchema(bookValidator.deleteValidator), wrap(bookController.deleteBook));

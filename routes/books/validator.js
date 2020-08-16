@@ -94,3 +94,11 @@ exports.deleteValidator = {
     isInt: true,
   },
 };
+
+exports.searchValidator = {
+  title: {
+    in: ['param'],
+    notEmpty: true,
+    isString: true,
+  },
+};
