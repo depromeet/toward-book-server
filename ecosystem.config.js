@@ -1,7 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: '',
+      name: 'toward-book',
+      exec_interpreter: 'babel-node',
       script: './app.js',
       instance: 0,
       exec_mode: 'cluster',
