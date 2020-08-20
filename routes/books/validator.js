@@ -50,6 +50,9 @@ exports.postValidator = {
     isLength: {
       options: { min: 1, max: 8 },
     },
+    isIn: {
+      options: [enums.time],
+    },
   },
   author: {
     in: ['body'],
@@ -87,18 +90,29 @@ exports.postValidator = {
   },
 };
 
-exports.deleteValidator = {
+exports.searchValidator = {
+  title: {
+    in: ['params'],
+    isEmpty: false,
+    isString: true,
+    isLength: {
+      options: { min: 1, max: 20 },
+    },
+  },
+};
+
+exports.getValidator = {
   id: {
-    in: ['param'],
-    notEmpty: true,
+    in: ['params'],
+    isEmpty: false,
     isInt: true,
   },
 };
 
-exports.searchValidator = {
-  title: {
-    in: ['param'],
-    notEmpty: true,
-    isString: true,
+exports.deleteValidator = {
+  id: {
+    in: ['params'],
+    isEmpty: false,
+    isInt: true,
   },
 };
