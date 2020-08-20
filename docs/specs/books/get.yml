@@ -17,15 +17,6 @@
             schemas:
               type: object
               properties:
-                user:
-                  type: object
-                  prperties:
-                    nickname: 
-                      type: string 
-                      description: '사용자 닉네임'
-                    profileImageType:
-                      type: integer
-                      description: '사용자 프로필 이미지 타입'
                 book:
                   type: object
                   prperties:
@@ -63,5 +54,61 @@
                     publisher:
                       type: 'string'
                       description: '출판사'
+                    user:
+                      type: object
+                      prperties:
+                        nickname: 
+                          type: string 
+                          description: '사용자 닉네임'
+                        profileImageType:
+                          type: integer
+                          description: '사용자 프로필 이미지 타입'     
+                tags:
+                  type: array
+                  items:
+                    type: string                    
       500:
         $ref: '#/components/responses/50000'
+
+'/books/search/{title}':
+  get:
+    tags:
+      - books
+    summary: '책 검색 API'
+    description: '책을 검색 후 결과를 불러오는 API 입니다.'
+    parameters:
+    - name: title
+      description: '검색할 책의 제목'
+      in: path
+      type: 'string'
+      required: true
+    responses:
+      200:
+        content:
+          application/json:
+            schemas:
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    description: '책 제목'
+                  image:
+                    type: string
+                    description: '책 커버 링크'
+                  author:
+                    type: string
+                    description: '저자'
+                  publisher:
+                    type: string
+                    description: '출판사'
+                  pubDate:
+                    type: date
+                    description: '출판일'
+                  description:
+                    type: string
+                    description: '설명' 
+      500:
+        $ref: '#/components/responses/50000'
+                    
