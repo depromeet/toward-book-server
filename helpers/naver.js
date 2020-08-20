@@ -1,9 +1,10 @@
 import axios from 'axios';
+import xml2js from 'xml2js';
 
 import CONFIG from '../config';
 import { logger } from '../config/winston';
 
-export default async (title) => {
+export default (title) => {
   return axios({
     url: CONFIG.search.naver.url,
     method: 'get',
@@ -20,7 +21,15 @@ export default async (title) => {
   })
     .then((res) => {
       if (res.status === 200) {
-        return res.data;
+        let items;
+        xml2js.parseString(res.data, { explicitArray: false }, (err, jsonResult) => {
+          if (!err) {
+            items = jsonResult.rss.channel.item;
+          } else {
+            logger.error(err);
+          }
+        });
+        return items;
       }
       return false;
     })
