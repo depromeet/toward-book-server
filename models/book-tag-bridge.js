@@ -27,6 +27,7 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'bookId',
       targetKey: 'id',
       as: 'book',
+      onDelete: 'CASCADE',
     });
     BookTagBridge.belongsTo(models.Tag, {
       foreignKey: 'tagId',

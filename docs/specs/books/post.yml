@@ -1,7 +1,7 @@
-'/book':
+'/books':
   post:
     tags:
-      - book
+      - books
     summary: '책 API'
     description: '책에 대한 기록을 남기는 API 입니다.'
     requestBody:
@@ -22,6 +22,7 @@
               - description
               - pubDate
               - publisher
+              - tag
               - userId
             properties:
               title:
@@ -62,6 +63,11 @@
               publisher:
                 type: 'string'
                 description: '출판사'
+              tags:
+                type: 'array'
+                items:
+                  type: string
+                description: '태그'
               userId:
                 type: 'integer'
                 description: '기록을 남긴 사용자 아이디'

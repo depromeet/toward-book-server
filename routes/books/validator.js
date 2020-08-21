@@ -1,4 +1,4 @@
-export default {
+exports.postValidator = {
   title: {
     in: ['body'],
     notEmpty: true,
@@ -73,5 +73,13 @@ export default {
     isLength: {
       options: { min: 1, max: 20 },
     },
+  },
+};
+
+exports.deleteValidator = {
+  id: {
+    in: ['param'],
+    notEmpty: true,
+    isInt: true,
   },
 };
