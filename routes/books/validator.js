@@ -54,31 +54,6 @@ exports.postValidator = {
       options: [enums.time],
     },
   },
-  author: {
-    in: ['body'],
-    isString: true,
-    isLength: {
-      options: { min: 1, max: 20 },
-    },
-  },
-  description: {
-    in: ['body'],
-    isString: true,
-    isLength: {
-      options: { min: 1, max: 300 },
-    },
-  },
-  pubDate: {
-    in: ['body'],
-    isDate: true,
-  },
-  publisher: {
-    in: ['body'],
-    isString: true,
-    isLength: {
-      options: { min: 1, max: 20 },
-    },
-  },
   tags: {
     in: ['body'],
     isArray: {

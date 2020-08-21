@@ -53,6 +53,7 @@
                       description: '설명'
                     thumbnail:
                       type: 'string'
+                      example: 'https://bookthumb-phinf.pstatic.net/cover/~~.jpg'
                       description: '실제 북커버'
                     publisher:
                       type: 'string'
