@@ -59,7 +59,7 @@ exports.postBook = async (req, res) => {
     const { tags } = req.body;
     const tagIds = [];
     tags.forEach((tag) => {
-      tagIds.push(enums.tag.indexOf(tag) + 1);
+      tagIds.push(enums.tag.indexOf(tag));
     });
     tagIds.forEach(async (tagId) => {
       await models.BookTagBridge.create({
@@ -102,6 +102,7 @@ exports.getBook = async (req, res) => {
         'time',
         'author',
         'description',
+        'thumbnail',
         'publisher',
       ],
     });
@@ -118,7 +119,10 @@ exports.getBook = async (req, res) => {
       attributes: ['name'],
     });
     const tags = tagsNotFiltered.map(({ name }) => name);
-    return successRes(req, res, { book, tags });
+    if (tags.length) {
+      return successRes(req, res, { book, tags });
+    }
+    return errorRes(req, res, '40400');
   } catch (e) {
     logger.error(e);
     return errorRes(req, res);

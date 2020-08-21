@@ -5,6 +5,6 @@ import bookController from './controller';
 
 const router = express.Router();
 
-router.get('/', wrap(bookController.getBooks));
+router.get('/:userId', wrap(bookController.getBooks));
 
 export default router;

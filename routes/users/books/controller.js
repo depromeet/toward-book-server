@@ -5,7 +5,7 @@ import { successRes, errorRes } from '../../../helpers/response';
 exports.getBooks = async (req, res) => {
   try {
     // const userId = req.user.id;
-    const userId = 1;
+    const { userId } = req.params;
     // const errors = validationResult(req);
     // if (!errors.isEmpty()) {
     //   return errorRes(req, res, '40000');

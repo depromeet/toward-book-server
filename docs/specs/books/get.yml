@@ -51,6 +51,9 @@
                     description:
                       type: 'string'
                       description: '설명'
+                    thumbnail:
+                      type: 'string'
+                      description: '실제 북커버'
                     publisher:
                       type: 'string'
                       description: '출판사'
