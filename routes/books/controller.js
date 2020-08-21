@@ -1,9 +1,51 @@
 import { validationResult } from 'express-validator';
 
+import getBookInfo from '../../helpers/naver';
 import enums from '../../config/enums';
 import models from '../../models';
 import { logger } from '../../config/winston';
 import { successRes, errorRes } from '../../helpers/response';
+
+exports.searchBook = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return errorRes(req, res, '40000');
+    }
+    const { title } = req.params;
+    const bookItems = await getBookInfo(title);
+    if (bookItems) {
+      let filtered;
+      if (bookItems.length > 1) {
+        filtered = bookItems.map((item) => {
+          const rObj = {
+            title: item.title.replace(/(<([^>]+)>)/gi, ''),
+            image: item.image,
+            author: item.author.replace(/(<([^>]+)>)/gi, ''),
+            publisher: item.publisher,
+            pubDate: item.pubdate,
+            description: item.description.replace(/(<([^>]+)>)/gi, '').replace(/\n/gi, ''),
+          };
+          return rObj;
+        });
+      } else {
+        filtered = {
+          title: bookItems.title.replace(/(<([^>]+)>)/gi, ''),
+          image: bookItems.image,
+          author: bookItems.author.replace(/(<([^>]+)>)/gi, ''),
+          publisher: bookItems.publisher,
+          pubDate: bookItems.pubdate,
+          description: bookItems.description.replace(/(<([^>]+)>)/gi, '').replace(/\n/gi, ''),
+        };
+      }
+      return successRes(req, res, filtered);
+    }
+    return errorRes(req, res, '40400');
+  } catch (e) {
+    logger.error(e);
+    return errorRes(req, res);
+  }
+};
 
 exports.postBook = async (req, res) => {
   // const userId = req.user.id;
@@ -34,37 +76,22 @@ exports.postBook = async (req, res) => {
 
 exports.getBook = async (req, res) => {
   try {
-    // const userId = req.user.id;
-    const userId = 1;
-
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //   return errorRes(req, res, '40000');
-    // }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return errorRes(req, res, '40000');
+    }
     const bookId = req.params.id;
-    const user = await models.User.findOne({
-      where: {
-        id: userId,
-      },
-      attributes: ['nickname', 'profileImageType'],
-    });
     const book = await models.Book.findOne({
       where: {
         id: bookId,
       },
-      // include: [
-      //   {
-      //     model: models.BookTagBridge,
-      //     as: 'tags',
-      //     include: [
-      //       {
-      //         model: models.Tag,
-      //         as: 'tag',
-      //         attributes: ['name'],
-      //       },
-      //     ],
-      //   },
-      // ],
+      include: [
+        {
+          model: models.User,
+          as: 'user',
+          attributes: ['nickname', 'profileImageType'],
+        },
+      ],
       attributes: [
         'title',
         'colorType',
@@ -85,12 +112,13 @@ exports.getBook = async (req, res) => {
           as: 'books',
           where: { bookId },
           attributes: [],
+          order: [['tagId', 'DESC']],
         },
       ],
       attributes: ['name'],
     });
     const tags = tagsNotFiltered.map(({ name }) => name);
-    return successRes(req, res, { user, book, tags });
+    return successRes(req, res, { book, tags });
   } catch (e) {
     logger.error(e);
     return errorRes(req, res);
