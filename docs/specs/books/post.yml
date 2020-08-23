@@ -2,7 +2,7 @@
   post:
     tags:
       - books
-    summary: '책 API'
+    summary: '책 기록 API'
     description: '책에 대한 기록을 남기는 API 입니다.'
     requestBody:
       required: true
@@ -18,6 +18,11 @@
               - phrase
               - reason
               - time
+              - author
+              - description
+              - thumbnail
+              - pubDate
+              - publisher
               - tag
               - userId
             properties:
@@ -46,10 +51,27 @@
                 type: 'string'
                 example: '촉촉한 새벽, 새로운 아침...'
                 description: '책을 추천하는 시간대'
+              author:
+                type: 'string'
+                description: '저자'
+              description:
+                type: 'string'
+                description: '설명'
+              thumbnail:
+                type: 'string'
+                description: '실제 북커버'
+              pubDate:
+                type: 'string'
+                format: 'date'
+                description: '출간일'
+              publisher:
+                type: 'string'
+                description: '출판사'
               tags:
                 type: 'array'
                 items:
                   type: string
+                  example: '쓸쓸한, 활발한, 스릴있는...(일단 샘플로 3개)'
                 description: '태그'
               userId:
                 type: 'integer'

@@ -2,7 +2,7 @@
   get:
     tags:
       - books
-    summary: '책 API'
+    summary: '책 상세 뷰 API'
     description: '책에 대한 자세한 기록을 불러오는 API 입니다.'
     parameters:
     - name: id
@@ -43,7 +43,6 @@
                       description: '기록을 남기는 이유'
                     time:
                       type: string
-                      example: '촉촉한 새벽, 새로운 아침...'
                       description: '책을 추천하는 시간대'
                     author:
                       type: string
@@ -53,7 +52,6 @@
                       description: '설명'
                     thumbnail:
                       type: 'string'
-                      example: 'https://bookthumb-phinf.pstatic.net/cover/~~.jpg'
                       description: '실제 북커버'
                     publisher:
                       type: 'string'
@@ -98,9 +96,9 @@
                   title:
                     type: string
                     description: '책 제목'
-                  image:
+                  thumbnail:
                     type: string
-                    description: '책 커버 링크'
+                    description: '실제 북커버'
                   author:
                     type: string
                     description: '저자'

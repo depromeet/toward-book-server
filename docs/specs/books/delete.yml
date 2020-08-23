@@ -2,7 +2,7 @@
   delete:
     tags:
       - books
-    summary: '책 API'
+    summary: '책 삭제 API'
     description: '책에 대한 기록을 삭제하는 API 입니다.'
     parameters:
     - name: id
