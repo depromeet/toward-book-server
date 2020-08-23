@@ -1,4 +1,6 @@
-export default {
+import enums from '../../config/enums';
+
+exports.postValidator = {
   title: {
     in: ['body'],
     notEmpty: true,
@@ -48,30 +50,44 @@ export default {
     isLength: {
       options: { min: 1, max: 8 },
     },
+    isIn: {
+      options: [enums.time],
+    },
   },
-  author: {
+  tags: {
     in: ['body'],
+    isArray: {
+      options: { min: 0, max: 3 },
+    },
+    isIn: {
+      options: [enums.tag],
+    },
+  },
+};
+
+exports.searchValidator = {
+  title: {
+    in: ['params'],
+    isEmpty: false,
     isString: true,
     isLength: {
       options: { min: 1, max: 20 },
     },
   },
-  description: {
-    in: ['body'],
-    isString: true,
-    isLength: {
-      options: { min: 1, max: 300 },
-    },
+};
+
+exports.getValidator = {
+  id: {
+    in: ['params'],
+    isEmpty: false,
+    isInt: true,
   },
-  pubDate: {
-    in: ['body'],
-    isDate: true,
-  },
-  publisher: {
-    in: ['body'],
-    isString: true,
-    isLength: {
-      options: { min: 1, max: 20 },
-    },
+};
+
+exports.deleteValidator = {
+  id: {
+    in: ['params'],
+    isEmpty: false,
+    isInt: true,
   },
 };

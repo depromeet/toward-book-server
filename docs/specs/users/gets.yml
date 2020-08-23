@@ -1,0 +1,45 @@
+'/users/books/{userId}':
+  get:
+    tags:
+      - users
+    summary: '책 API'
+    description: '사용자가 남긴 책 전체 목록을 불러오는 API 입니다.'
+    parameters:
+    - name: userId
+      description: '테스트를 위해 일단 params으로 사용자ID를 받게 해놓음'
+      in: path
+      type: 'integer'
+      required: true
+    responses:
+      200:
+        content:
+          application/json:
+            schemas:
+              type: object
+              properties:
+                count:
+                  type: integer
+                    description: '사용자가 남긴 책의 기록 개수' 
+                books:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: '책 아이디'
+                      title:
+                        type: string
+                        description: '책 제목'
+                      colorType:
+                        type: string
+                        example: 'NAVY, GRAY...'
+                        description: '북커버 컬러칩'
+                      phrase:
+                        type: string
+                        description: '북커버에 들어갈 문구'
+                      author:
+                        type: string
+                        description: '저자'
+      500:
+        $ref: '#/components/responses/50000'

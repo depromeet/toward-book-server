@@ -1,0 +1,17 @@
+'/books/{id}':
+  delete:
+    tags:
+      - books
+    summary: '책 API'
+    description: '책에 대한 기록을 삭제하는 API 입니다.'
+    parameters:
+    - name: id
+      description: '선택한 책의 id'
+      in: path
+      type: 'integer'
+      required: true
+    responses:
+      200:
+        $ref: '#/components/responses/20000'
+      500:
+        $ref: '#/components/responses/50000'

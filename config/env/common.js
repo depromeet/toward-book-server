@@ -19,6 +19,11 @@ const common = {
       url: 'https://kapi.kakao.com/v1/user/access_token_info',
     },
   },
+  search: {
+    naver: {
+      url: 'https://openapi.naver.com/v1/search/book.xml',
+    },
+  },
 };
 
 export default common;
