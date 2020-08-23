@@ -2,10 +2,10 @@ module.exports = {
   apps: [
     {
       name: 'toward-book',
-      interpreter: 'babel-node',
+      exec_interpreter: 'babel-node',
       script: './app.js',
       instance: 0,
-      exec_mode: 'cluster',
+      exec_mode: 'fork',
       merge_log: true,
       wait_ready: true,
       listen_timeout: 50000,
