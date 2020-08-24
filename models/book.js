@@ -89,6 +89,8 @@ export default (sequelize, DataTypes) => {
               ORDER BY distance`;
     const result = await sequelize.query(query, {
       replacements: { latitude, longitude },
+      type: sequelize.QueryTypes.SELECT,
+      raw: true,
     });
     return result;
   };
