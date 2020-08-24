@@ -83,7 +83,7 @@ export default (sequelize, DataTypes) => {
                   + sin ( radians( :latitude ) )
                   * sin( radians( latitude ) )
                 ) AS distance
-              FROM book
+              FROM Book
               GROUP BY id
               HAVING distance >= 0 AND distance < 1000
               ORDER BY distance`;
