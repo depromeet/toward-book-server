@@ -23,7 +23,7 @@
               - thumbnail
               - pubDate
               - publisher
-              - tag
+              - tags
               - userId
             properties:
               title:
@@ -31,7 +31,7 @@
                 description: '책 제목'
               colorType:
                 type: 'string'
-                example: 'NAVY, GRAY...'
+                example: 'NAVY, GRAY..'
                 description: '북커버 컬러칩'
               latitude:
                 type: 'number'
@@ -49,7 +49,7 @@
                 description: '기록을 남기는 이유'
               time:
                 type: 'string'
-                example: '촉촉한 새벽, 새로운 아침...'
+                example: '촉촉한 새벽, 새로운 아침..'
                 description: '책을 추천하는 시간대'
               author:
                 type: 'string'
@@ -71,7 +71,7 @@
                 type: 'array'
                 items:
                   type: string
-                  example: '쓸쓸한, 활발한, 스릴있는...(일단 샘플로 3개)'
+                  example: '따뜻한, 유쾌한..'
                 description: '태그'
               userId:
                 type: 'integer'
