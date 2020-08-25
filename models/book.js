@@ -8,7 +8,7 @@ export default (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       title: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(60),
         allowNull: false,
       },
       colorType: {
