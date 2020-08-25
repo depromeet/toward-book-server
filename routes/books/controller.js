@@ -107,6 +107,21 @@ exports.getBook = async (req, res) => {
   }
 };
 
+exports.getBooks = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return errorRes(req, res, '40000');
+    }
+    const { latitude, longitude } = req.query;
+    const books = await models.Book.findAllByDistance(latitude, longitude);
+    return successRes(req, res, books);
+  } catch (e) {
+    logger.error(e);
+    return errorRes(req, res);
+  }
+};
+
 exports.deleteBook = async (req, res) => {
   // const userId = req.user.id;
   try {

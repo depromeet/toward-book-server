@@ -74,5 +74,26 @@ export default (sequelize, DataTypes) => {
     });
   };
 
+  Book.findAllByDistance = async (latitude, longitude) => {
+    const query = `SELECT *,
+                6371 * acos (
+                  cos ( radians( :latitude ) )
+                  * cos( radians( latitude ) )
+                  * cos( radians( longitude ) - radians( :longitude ) )
+                  + sin ( radians( :latitude ) )
+                  * sin( radians( latitude ) )
+                ) AS distance
+              FROM Book
+              GROUP BY id
+              HAVING distance >= 0 AND distance < 1000
+              ORDER BY distance`;
+    const result = await sequelize.query(query, {
+      replacements: { latitude, longitude },
+      type: sequelize.QueryTypes.SELECT,
+      raw: true,
+    });
+    return result;
+  };
+
   return Book;
 };

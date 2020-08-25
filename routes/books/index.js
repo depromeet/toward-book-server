@@ -15,6 +15,7 @@ router.get(
 );
 router.post('/', checkSchema(bookValidator.postValidator), wrap(bookController.postBook));
 router.get('/:id', checkSchema(bookValidator.getValidator), wrap(bookController.getBook));
+router.get('/', checkSchema(bookValidator.getsValidator), wrap(bookController.getBooks));
 router.delete('/:id', checkSchema(bookValidator.deleteValidator), wrap(bookController.deleteBook));
 
 export default router;

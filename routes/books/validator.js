@@ -118,6 +118,21 @@ exports.getValidator = {
   },
 };
 
+exports.getsValidator = {
+  latitude: {
+    in: ['query'],
+    isFloat: true,
+    toFloat: true,
+    isEmpty: false,
+  },
+  longitude: {
+    in: ['query'],
+    isFloat: true,
+    toFloat: true,
+    isEmpty: false,
+  },
+};
+
 exports.deleteValidator = {
   id: {
     in: ['params'],
