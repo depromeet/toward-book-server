@@ -6,7 +6,7 @@ exports.postValidator = {
     notEmpty: true,
     isString: true,
     isLength: {
-      options: { min: 1, max: 30 },
+      options: { min: 1, max: 60 },
     },
   },
   colorType: {
@@ -54,14 +54,51 @@ exports.postValidator = {
       options: [enums.time],
     },
   },
+  author: {
+    in: ['body'],
+    isString: true,
+    isLength: {
+      options: { min: 1, max: 20 },
+    },
+  },
+  description: {
+    in: ['body'],
+    isString: true,
+    isLength: {
+      options: { min: 1, max: 300 },
+    },
+  },
+  thumbnail: {
+    in: ['body'],
+    isString: true,
+    isLength: {
+      options: { min: 1, max: 300 },
+    },
+  },
+  pubDate: {
+    in: ['body'],
+    isDate: true,
+  },
+  publisher: {
+    in: ['body'],
+    isString: true,
+    isLength: {
+      options: { min: 1, max: 20 },
+    },
+  },
   tags: {
     in: ['body'],
     isArray: {
-      options: { min: 0, max: 3 },
+      options: { min: 0, max: 15 },
     },
     isIn: {
       options: [enums.tag],
     },
+  },
+  userId: {
+    in: ['body'],
+    isEmpty: false,
+    isInt: true,
   },
 };
 
@@ -70,9 +107,6 @@ exports.searchValidator = {
     in: ['params'],
     isEmpty: false,
     isString: true,
-    isLength: {
-      options: { min: 1, max: 20 },
-    },
   },
 };
 

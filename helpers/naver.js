@@ -11,7 +11,7 @@ export default (title) => {
     params: {
       query: title, // 책 검색 텍스트
       start: 1, // 검색 시작 위치
-      display: 6, // 가져올 책 개수
+      display: 10, // 가져올 책 개수
       sort: 'sim', // 정렬 유형 (sim: 유사도)
     },
     headers: {
