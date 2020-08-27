@@ -35,11 +35,11 @@
                 description: '북커버 컬러칩'
               latitude:
                 type: 'number'
-                format: 'float'
+                format: 'double'
                 description: '위도'
               longitude:
                 type: 'number'
-                format: 'float'
+                format: 'double'
                 description: '경도'
               phrase:
                 type: 'string'

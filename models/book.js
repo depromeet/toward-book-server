@@ -16,11 +16,11 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
       },
       latitude: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.DOUBLE,
         allowNull: false,
       },
       longitude: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.DOUBLE,
         allowNull: false,
       },
       phrase: {

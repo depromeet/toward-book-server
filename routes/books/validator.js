@@ -20,12 +20,12 @@ exports.postValidator = {
   latitude: {
     in: ['body'],
     notEmpty: true,
-    isFloat: true,
+    isDouble: true,
   },
   longitude: {
     in: ['body'],
     notEmpty: true,
-    isFloat: true,
+    isDouble: true,
   },
   phrase: {
     in: ['body'],
@@ -121,14 +121,14 @@ exports.getValidator = {
 exports.getsValidator = {
   latitude: {
     in: ['query'],
-    isFloat: true,
-    toFloat: true,
+    isDouble: true,
+    toDouble: true,
     isEmpty: false,
   },
   longitude: {
     in: ['query'],
-    isFloat: true,
-    toFloat: true,
+    isDouble: true,
+    toDouble: true,
     isEmpty: false,
   },
 };
