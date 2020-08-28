@@ -6,7 +6,7 @@ exports.postValidator = {
     notEmpty: true,
     isString: true,
     isLength: {
-      options: { min: 1, max: 60 },
+      options: { min: 1, max: 100 },
     },
   },
   colorType: {
